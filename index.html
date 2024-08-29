@@ -1,0 +1,33 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Debouncing in Js</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <input type="text" placeholder="type text" id="inp" />
+      <button id="btn">click me</button>
+    </div>
+    <script>
+      let cur = 0;
+      function debounce(func, delay){
+        return function(){
+          let time = new Date().getTime();
+          if((time - cur) > delay){
+            func();
+            cur = time;
+          }
+        }
+      }
+      function fn(){
+        console.log("key pressed!");
+      }
+      document.getElementById("inp").addEventListener(
+        "input",
+        debounce(fn, 300)
+      );
+    </script>
+  </body>
+</html>
