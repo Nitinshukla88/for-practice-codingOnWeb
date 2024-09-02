@@ -8,26 +8,38 @@
   <body>
     <div class="container">
       <input type="text" placeholder="type text" id="inp" />
-      <button id="btn">click me</button>
+      <button onclick="throttle(2500)">click me</button>
     </div>
     <script>
-      let cur = 0;
-      function debounce(func, delay){
-        return function(){
-          let time = new Date().getTime();
-          if((time - cur) > delay){
-            func();
-            cur = time;
-          }
+      // let cur = 0;
+      // function debounce(func, delay){
+      //   return function(){
+      //     let time = new Date().getTime();
+      //     if((time - cur) > delay){
+      //       func();
+      //       cur = time;
+      //     }
+      //   }
+      // }
+      // function fn(){
+      //   console.log("key pressed!");
+      // }
+      // document.getElementById("inp").addEventListener(
+      //   "input",
+      //   debounce(fn, 300)
+      // );
+
+      // this is for throttling function
+      let curr = 0;
+      function throttle(delay) {
+        let time = new Date().getTime();
+        if (time - curr >= delay) {
+          curr = time;
+          setTimeout(() => {
+            console.log("button clicked!");
+          }, delay);
         }
       }
-      function fn(){
-        console.log("key pressed!");
-      }
-      document.getElementById("inp").addEventListener(
-        "input",
-        debounce(fn, 300)
-      );
     </script>
   </body>
 </html>
